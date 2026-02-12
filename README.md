@@ -13,11 +13,11 @@ Capcomposer's Game Boy Color Internal Pro-Sound mod](https://capcomposer.blogspo
 
 ### Explanation
 
-When bypassing the internal audio amplifier, you will be essentially connecting the headphone jack directly to one of the CPU pins (with a couple of passive components in between). This will give you the best possible audio signal, but it is not ideal for driving headphones. This is because normally CPUs do not have the capability of outputting a lot of power or current through their pins, so powering headphones from one of those pins might damage the CPU. The volume wheel, which is a variable resistor, does protect against excessive power draw somewhat because it resists the flow of current, but when you put it at maximum volume, the resistance will be essentially zero. This is why this modification puts two 4.7 kΩ resistors in series with the 510 Ω resistor that is already installed on the board. So even in the worst-case scenario when you accidentally short the audio output to ground, it limits the current at 2.5 V RMS to around 0.5 mA. This might still be enough current to damage the CPU, but without an official datasheet rating, this is still better than nothing and hopefully protects the CPU somewhat if something goes wrong.
+When bypassing the internal audio amplifier, you will be essentially connecting the headphone jack directly to one of the CPU pins (with a couple of passive components in between). This will give you the best possible audio signal, but it is not ideal for driving headphones. This is because normally CPUs do not have the capability of outputting a lot of power or current through their pins, so powering headphones from one of those pins might damage the CPU. The volume wheel, which is a variable resistor, does protect against excessive power draw somewhat because it resists the flow of current, but when you put it at maximum volume, the resistance will be essentially zero. This is why this modification puts two 4.7 kΩ resistors in series with the two 510 Ω resistors that are already installed on the board. So even in the worst-case scenario when you accidentally short the audio output to ground, it limits the current at 2.5 V RMS to around 0.5 mA. This might still be enough current to damage the CPU, but without an official datasheet rating stating what the maximum output current of the CPU is, it is still better than nothing and hopefully protects the CPU somewhat if something goes wrong.
 
 ### Headphone selection
 
-Limiting the current like this will also have the effect that the volume on most headphones will be fairly quiet or even zero. This is why this modification is limited to in-ear headphones only. I've tested it with some inexpensive but very sensitive KZ ZSN Pro X in-ear headphones, and even at the middle position of the volume wheel, it was still plenty loud. For larger over-ear or power-hungry headphones, an external audio amplifier must be used. Using an external amplifier will also protect you against the risk of drawing too much current from the CPU pins because at that point the headphone jack is essentially just a line-out.
+Limiting the current like this will also have the effect that the volume on most headphones will be fairly quiet or even zero. This is why this modification is limited to in-ear headphones only. I've tested it with some inexpensive but very sensitive KZ ZSN Pro X in-ear headphones, and with the volume wheel in the middle position, it was still plenty loud. For larger over-ear or power-hungry headphones, an external audio amplifier must be used. Using an external amplifier will also protect you against the risk of drawing too much current from the CPU pins because at that point the headphone jack is essentially just a line-out.
 
 ### Board revisions and component labels
 
@@ -35,15 +35,41 @@ For this modification, you will need a soldering iron, some solder, and these co
 
 ## 🎛️ Bypassing the amplifier
 
+### Schematic
+
 The first step is to bypass the noisy internal audio amplifier to get rid of the low-frequency buzzing. This is done by connecting some resistors to the volume wheel, which gets a clean audio signal directly from the CPU, and then using some wire to skip all the noisy components. To do this, you will need to modify the original circuitry according to this schematic:
 
 <a href="./Assets/Audio amplifier bypass schematic.svg">
     <img alt="Audio amplifier bypass schematic" src="./Assets/Audio amplifier bypass schematic.svg" width="100%">
 </a>
 
+### Instructions
+
 Solder a 4.7 kΩ resistor onto the VR1-LIN and VR1-RIN pins of the volume wheel. VR1-LIN is the second and VR1-RIN is the third pin from the top of the volume wheel. Then solder a thin wire onto each resistor and route them next to the cartridge slot along the right side of the motherboard until you reach a small SMD capacitor labeled C31. Bend the wires 90 degrees and route them along the bottom half of the motherboard towards the speaker. Fold the wires around the PCB by the speaker cutout and solder the two ends to pins 2 and 3 of the headphone jack. Make sure pin 2 is connected to VR1-LIN and pin 3 is connected to VR1-RIN; otherwise, your left and right audio channels will be swapped! Finally, find and remove the two small inductors labeled EM2 and EM3 located in the center of the board above the headphone jack. Removing EM2 and EM3 is very important because this disconnects the original amplifier from the headphone jack, bypassing it completely.
 
+### Execution
+
+This is how I solder the two resistors onto the volume wheel; just make sure everything is low profile enough to not interfere with the cartridge slot.
+
+<a href="./Assets/Volume wheel resistors and wires.jpg">
+    <img alt="Volume wheel resistors and wires" src="./Assets/Volume wheel resistors and wires.jpg" width="100%">
+</a>
+
+I routed the wires along the right side of the motherboard to avoid the battery compartment, then bent them towards the speaker cutout around the PCB, and finally soldered the wires onto pins 2 and 3 of the headphone jack, making sure pin 2 is connected to the resistor on VR1-LIN, which is the second pin from the top of the volume wheel, and pin 3 to the resistor on VR1-RIN, which is the third pin from the top of the volume wheel.
+
+<a href="./Assets/Wire routing and connection.jpg">
+    <img alt="Wire routing and connection" src="./Assets/Wire routing and connection.jpg" width="100%">
+</a>
+
+I also removed the two small inductors labeled EM2 and EM3, which can be located right above the headphone jack, to disconnect the audio amplifier.
+
+<a href="./Assets/Removal of EM2 and EM3.jpg">
+    <img alt="Removal of EM2 and EM3" src="./Assets/Removal of EM2 and EM3.jpg" width="100%">
+</a>
+
 ## 🔋 Adding bulk capacitance
+
+### Schematic
 
 The second step is to add bulk capacitance to the original voltage regulator to remove the high-frequency hissing. This is very simple because you will just need to add a capacitor in parallel with C32. The capacitance of the new capacitor is not that important; it should be at least 100 uF and higher is usually better. I would look for a capacitance in the range of 500 - 1000 uF. What's more important is that the capacitor has a low ESR (equivalent series resistance) rating to more effectively filter out the switching noise coming from the voltage regulator. To do this, you will need to modify the original circuitry according to this schematic:
 
@@ -51,7 +77,26 @@ The second step is to add bulk capacitance to the original voltage regulator to 
     <img alt="Bulk capacitance schematic" src="./Assets/Bulk capacitance schematic.svg" width="100%">
 </a>
 
-Solder some thin-gauge wire onto the legs of the new capacitor long enough to span from the speaker over to the original capacitor C32. Then connect the wires to the pins of C32, making sure the polarity of the new capacitor matches the original polarity. Stick down the new capacitor with some hot glue onto the speaker in a way where you don't block or melt the speaker. That's it.
+### Instructions
+
+Solder some thin-gauge wires onto the legs of the new capacitor long enough to span from the speaker over to the original capacitor C32. Then connect the wires to the pins of C32, making sure the polarity of the new capacitor matches the original polarity. Stick down the new capacitor with some hot glue onto the speaker in a way where you don't block or melt the speaker
+
+### Execution
+
+I soldered some wires onto a 1000 uF low ESR capacitor long enough to reach from the speaker to a capacitor right above the voltage regulator labeled C32. Your C32 capacitor will be black and silver; ignore that mine is red, that is because of an unrelated modification. I then connected the wires in parallel with C32 and stuck down the new capacitor with some hot glue onto the speaker.
+
+<a href="./Assets/Bulk capacitor connection.jpg">
+    <img alt="Bulk capacitor connection" src="./Assets/Bulk capacitor connection.jpg" width="100%">
+</a>
+
+## ➕ Additional considerations
+
+You might also want to consider soldering the spring onto the battery contacts and cleaning out or replacing the power switch to give the whole system a better ground connection, which can also reduce noise. This is not really necessary, though.
+
+<a href="./Assets/Battery contact and power switch.jpg">
+    <img alt="Battery contact and power switch" src="./Assets/Battery contact and power switch.jpg" width="100%">
+</a>
+
 
 ## 🩺 Troubleshooting
 

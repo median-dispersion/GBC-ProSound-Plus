@@ -39,9 +39,11 @@ For this modification, you will need a soldering iron, some solder, and these co
 
 The first step is to bypass the noisy internal audio amplifier to get rid of the low-frequency buzzing. This is done by connecting some resistors to the volume wheel, which gets a clean audio signal directly from the CPU, and then using some wire to skip all the noisy components. To do this, you will need to modify the original circuitry according to this schematic:
 
-<a href="./Assets/Audio amplifier bypass schematic.svg">
-    <img alt="Audio amplifier bypass schematic" src="./Assets/Audio amplifier bypass schematic.svg" width="100%">
-</a>
+<p align="center">
+    <a href="./Assets/Audio amplifier bypass schematic.svg">
+        <img alt="Audio amplifier bypass schematic" src="./Assets/Audio amplifier bypass schematic.svg" width="800px">
+    </a>
+</p>
 
 ### Instructions
 
@@ -51,21 +53,27 @@ Solder a 4.7 kΩ resistor onto the VR1-LIN and VR1-RIN pins of the volume wheel.
 
 This is how I solder the two resistors onto the volume wheel; just make sure everything is low profile enough to not interfere with the cartridge slot.
 
-<a href="./Assets/Volume wheel resistors and wires.jpg">
-    <img alt="Volume wheel resistors and wires" src="./Assets/Volume wheel resistors and wires.jpg" width="100%">
-</a>
+<p align="center">
+    <a href="./Assets/Volume wheel resistors and wires.jpg">
+        <img alt="Volume wheel resistors and wires" src="./Assets/Volume wheel resistors and wires.jpg" width="800px">
+    </a>
+</p>
 
 I routed the wires along the right side of the motherboard to avoid the battery compartment, then bent them towards the speaker cutout around the PCB, and finally soldered the wires onto pins 2 and 3 of the headphone jack, making sure pin 2 is connected to the resistor on VR1-LIN, which is the second pin from the top of the volume wheel, and pin 3 to the resistor on VR1-RIN, which is the third pin from the top of the volume wheel.
 
-<a href="./Assets/Wire routing and connection.jpg">
-    <img alt="Wire routing and connection" src="./Assets/Wire routing and connection.jpg" width="100%">
-</a>
+<p align="center">
+    <a href="./Assets/Wire routing and connection.jpg">
+        <img alt="Wire routing and connection" src="./Assets/Wire routing and connection.jpg" width="800px">
+    </a>
+</p>
 
 I also removed the two small inductors labeled EM2 and EM3, which can be located right above the headphone jack, to disconnect the audio amplifier.
 
-<a href="./Assets/Removal of EM2 and EM3.jpg">
-    <img alt="Removal of EM2 and EM3" src="./Assets/Removal of EM2 and EM3.jpg" width="100%">
-</a>
+<p align="center">
+    <a href="./Assets/Removal of EM2 and EM3.jpg">
+        <img alt="Removal of EM2 and EM3" src="./Assets/Removal of EM2 and EM3.jpg" width="800px">
+    </a>
+</p>
 
 ## 🔋 Adding bulk capacitance
 
@@ -73,9 +81,11 @@ I also removed the two small inductors labeled EM2 and EM3, which can be located
 
 The second step is to add bulk capacitance to the original voltage regulator to remove the high-frequency hissing. This is very simple because you will just need to add a capacitor in parallel with C32. The capacitance of the new capacitor is not that important; it should be at least 100 uF and higher is usually better. I would look for a capacitance in the range of 500 - 1000 uF. What's more important is that the capacitor has a low ESR (equivalent series resistance) rating to more effectively filter out the switching noise coming from the voltage regulator. To do this, you will need to modify the original circuitry according to this schematic:
 
-<a href="./Assets/Bulk capacitance schematic.svg">
-    <img alt="Bulk capacitance schematic" src="./Assets/Bulk capacitance schematic.svg" width="100%">
-</a>
+<p align="center">
+    <a href="./Assets/Bulk capacitance schematic.svg">
+        <img alt="Bulk capacitance schematic" src="./Assets/Bulk capacitance schematic.svg" width="800px">
+    </a>
+</p>
 
 ### Instructions
 
@@ -85,18 +95,39 @@ Solder some thin-gauge wires onto the legs of the new capacitor long enough to s
 
 I soldered some wires onto a 1000 uF low ESR capacitor long enough to reach from the speaker to a capacitor right above the voltage regulator labeled C32. Your C32 capacitor will be black and silver; ignore that mine is red, that is because of an unrelated modification. I then connected the wires in parallel with C32 and stuck down the new capacitor with some hot glue onto the speaker.
 
-<a href="./Assets/Bulk capacitor connection.jpg">
-    <img alt="Bulk capacitor connection" src="./Assets/Bulk capacitor connection.jpg" width="100%">
-</a>
+<p align="center">
+    <a href="./Assets/Bulk capacitor connection.jpg">
+        <img alt="Bulk capacitor connection" src="./Assets/Bulk capacitor connection.jpg" width="800px">
+    </a>
+</p>
 
 ## ➕ Additional considerations
 
 You might also want to consider soldering the spring onto the battery contacts and cleaning out or replacing the power switch to give the whole system a better ground connection, which can also reduce noise. This is not really necessary, though.
 
-<a href="./Assets/Battery contact and power switch.jpg">
-    <img alt="Battery contact and power switch" src="./Assets/Battery contact and power switch.jpg" width="100%">
-</a>
+<p align="center">
+    <a href="./Assets/Battery contact and power switch.jpg">
+        <img alt="Battery contact and power switch" src="./Assets/Battery contact and power switch.jpg" width="800px">
+    </a>
+</p>
 
+# 🎯 Results
+
+Here you can see the result of this modification represented in spectrogram form. Both of these spectrograms were recorded at the same volume, and the reduction in noise from the original to the ProSound+ is very obvious.
+
+<p align="center">
+    <a href="./Assets/Original audio spectrogram.jpg">
+        <img alt="Original audio spectrogram" src="./Assets/Original audio spectrogram.jpg" width="400px">
+    </a>
+    <a href="./Assets/GBC ProSound+ spectrogram.jpg">
+        <img alt="GBC ProSound+ spectrogram" src="./Assets/GBC ProSound+ spectrogram.jpg" width="400px">
+    </a>
+</p>
+
+If you want to listen to the result for yourself, take a look at these files:
+
+- [Assets / Original audio sample](./Assets/Original%20audio%20sample.ogg)
+- [Assets / GBC ProSound+ sample](./Assets/GBC%20ProSound+%20sample.ogg)
 
 ## 🩺 Troubleshooting
 
@@ -106,7 +137,7 @@ The most likely cause of a Game Boy not powering on after completing this modifi
 
 ### No Audio
 
-If you don't get any audio through the headphone, make sure that you have removed the inductors EM2 and EM3. If you have, check that all the wires and resistors make good contact and that nothing is shorting out. If you still don't get any audio, try different headphones, preferably low-power in-ear ones.
+If you don't get any audio through the headphone jack, make sure that you have removed the inductors EM2 and EM3. If you have, check that all the wires and resistors make good contact and that nothing is shorting out. If you still don't get any audio, try different headphones, preferably low-power in-ear ones.
 
 ### Low volume
 

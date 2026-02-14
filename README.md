@@ -1,6 +1,12 @@
 # GBC ProSound+
 
-## 📝 Introduction
+<p align="center">
+    <a href="./Assets/Banner.svg">
+        <img alt="Banner" src="./Assets/Banner.svg" width="900px">
+    </a>
+</p>
+
+<img alt="GitHub License" src="https://img.shields.io/github/license/median-dispersion/GBC-ProSound-Plus?style=for-the-badge">
 
 This is a hardware modification for the Game Boy Color to get a cleaner audio signal from the internal headphone jack. It is based on [
 Capcomposer's Game Boy Color Internal Pro-Sound mod](https://capcomposer.blogspot.com/2010/01/gameboy-color-internal-pro-sound-mod.html) with some small additional tweaks, hence the "plus" in the name. It consists of two parts. The first part is a bypass of the internal noisy audio amplifier to get rid of the low-frequency hum or buzz, and the second part is a boost in capacitance for the voltage regulator to get rid of the high-frequency hiss or screeching.
@@ -111,7 +117,7 @@ You might also want to consider soldering the spring onto the battery contacts a
     </a>
 </p>
 
-# 🎯 Results
+## 🎯 Results
 
 Here you can see the result of this modification represented in spectrogram form. Both of these spectrograms were recorded at the same volume, and the reduction in noise from the original to the ProSound+ is very obvious.
 

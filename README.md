@@ -6,7 +6,9 @@
     </a>
 </p>
 
-<img alt="GitHub License" src="https://img.shields.io/github/license/median-dispersion/GBC-ProSound-Plus?style=for-the-badge">
+<a href="./LICENSE">
+    <img alt="GitHub License" src="https://img.shields.io/github/license/median-dispersion/GBC-ProSound-Plus?style=for-the-badge">
+</a>
 
 This is a hardware modification for the Game Boy Color to get a cleaner audio signal from the internal headphone jack. It is based on [
 Capcomposer's Game Boy Color Internal Pro-Sound mod](https://capcomposer.blogspot.com/2010/01/gameboy-color-internal-pro-sound-mod.html) with some small additional tweaks, hence the "plus" in the name. It consists of two parts. The first part is a bypass of the internal noisy audio amplifier to get rid of the low-frequency hum or buzz, and the second part is a boost in capacitance for the voltage regulator to get rid of the high-frequency hiss or screeching.
@@ -119,21 +121,30 @@ You might also want to consider soldering the spring onto the battery contacts a
 
 ## 🎯 Results
 
-Here you can see the result of this modification represented in spectrogram form. Both of these spectrograms were recorded at the same volume, and the reduction in noise from the original to the ProSound+ is very obvious.
+Here you can see the result of this modification represented in spectrogram form. Both of these spectrograms were recorded at the same volume and with the same cartridge, and the reduction in noise from the original to the ProSound+ is very obvious.
 
 <p align="center">
     <a href="./Assets/Original audio spectrogram.jpg">
         <img alt="Original audio spectrogram" src="./Assets/Original audio spectrogram.jpg" width="400px">
     </a>
-    <a href="./Assets/GBC ProSound+ spectrogram.jpg">
-        <img alt="GBC ProSound+ spectrogram" src="./Assets/GBC ProSound+ spectrogram.jpg" width="400px">
+    <a href="./Assets/GBC ProSound+ sample - Noisy cartridge.jpg">
+        <img alt="GBC ProSound+ spectrogram - Noisy cartridge" src="./Assets/GBC ProSound+ sample - Noisy cartridge.jpg" width="400px">
+    </a>
+</p>
+
+Finally, the noise is also highly dependent on the game cartridge that you are using. The previous two samples were recorded using my noisiest cartridge, an old original Game Boy game. This sample was recorded using a newer Game Boy Color cartridge, and as you can see, there's no more noise!
+
+<p align="center">
+    <a href="./Assets/GBC ProSound+ sample - Clean cartridge.jpg">
+        <img alt="GBC ProSound+ spectrogram - Clean cartridge" src="./Assets/GBC ProSound+ sample - Clean cartridge.jpg" width="400px">
     </a>
 </p>
 
 If you want to listen to the result for yourself, take a look at these files:
 
 - [Assets / Original audio sample](./Assets/Original%20audio%20sample.ogg)
-- [Assets / GBC ProSound+ sample](./Assets/GBC%20ProSound+%20sample.ogg)
+- [Assets / GBC ProSound+ sample - Noisy cartridge](./Assets/GBC%20ProSound+%20sample%20-%20Noisy%20cartridge.ogg)
+- [Assets / GBC ProSound+ sample - Clean cartridge](./Assets/GBC%20ProSound+%20sample%20-%20Clean%20cartridge.ogg)
 
 ## 🩺 Troubleshooting
 
